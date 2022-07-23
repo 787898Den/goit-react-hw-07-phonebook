@@ -1,10 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import actions from 'redux/actions';
-import { getFilter } from 'redux/selectors';
+import  changeFilter  from '../../redux/filter/actions';
 import s from './Filter.module.css';
 
 export const Filter = ({ title }) => {
-  const value = useSelector(getFilter);
+  const value = useSelector(state => state.filter);
 
   const dispatch = useDispatch();
 
@@ -16,7 +15,7 @@ export const Filter = ({ title }) => {
         type="text"
         name="filter"
         value={value}
-        onChange={e => dispatch(actions.changeFilter(e.currentTarget.value))}
+        onChange={e => dispatch(changeFilter(e.currentTarget.value))}
       />
     </label>
   );

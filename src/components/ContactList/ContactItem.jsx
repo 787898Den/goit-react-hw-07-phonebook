@@ -1,7 +1,9 @@
+import { useDeleteContactMutation } from '../../redux/api';
 import s from './ContactList.module.css';
 
-export const ContactItem = ({ contact, onDelete }) => {
+export const ContactItem = ({ contact }) => {
   const { id, name, number } = contact;
+  const [deleteContact, { isLoading }] = useDeleteContactMutation();
   return (
     <li className={s.list__item}>
       <p className={s.text}>{name}</p>
@@ -10,11 +12,10 @@ export const ContactItem = ({ contact, onDelete }) => {
         className={s.button}
         type="button"
         id={id}
-        onClick={e => {
-          onDelete(e.target.id);
-        }}
+        onClick={() => deleteContact(id)}
+        disabled={isLoading}
       >
-        Delete
+        {isLoading ? 'Deleting...' : 'Delete'}
       </button>
     </li>
   );
