@@ -4,7 +4,7 @@ import s from './ContactForm.module.css';
 
 export function ContactForm() {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const [addContact] = useAddContactMutation();
   const { data: contacts } = useFetchContactsQuery();
 
@@ -17,7 +17,7 @@ export function ContactForm() {
         break;
 
       case 'number':
-        setNumber(value);
+        setPhone(value);
         break;
 
       default:
@@ -32,7 +32,7 @@ export function ContactForm() {
     );
 
     if (!isContact) {
-      addContact({ name, number });
+      addContact({ name, phone });
       reset();
       return;
     }
@@ -41,7 +41,7 @@ export function ContactForm() {
 
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -69,7 +69,7 @@ export function ContactForm() {
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            value={number}
+            value={phone}
             onChange={handleInputChange}
           />
         </label>

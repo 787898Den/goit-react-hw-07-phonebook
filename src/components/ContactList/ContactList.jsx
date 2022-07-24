@@ -20,8 +20,8 @@ export const ContactList = ({ contacts: { data: contacts, isFetching, isError } 
               name.toLowerCase().includes(filterValue.toLowerCase()),
             )
             .sort((a, b) => a.name.localeCompare(b.name))
-            .map(({ id, name, number }) => {
-              return <ContactItem contact={{ id, name, number }} key={id} />;
+            .map(({ id, name, phone }) => {
+              return <ContactItem contact={{ id, name, phone }} key={id} />;
             })}
        </ul>
 
