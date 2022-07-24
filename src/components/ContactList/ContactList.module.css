@@ -28,3 +28,7 @@
   .button:hover, .button:focus{
     background-color: red;
   }
+  .spinner{
+    display: flex;
+  justify-content: center;
+}

@@ -10,7 +10,9 @@ export const ContactList = ({ contacts: { data: contacts, isFetching, isError } 
   return (
     <>
       {isFetching && (
+        <div  className={s.spinner}>
           <Bars color="#00BFFF" height={200} width={200} ariaLabel="loading" />
+          </div>
       )}
       {!isFetching && !isError && contacts && (
     
