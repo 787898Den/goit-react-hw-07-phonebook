@@ -6,7 +6,7 @@ export function ContactForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [addContact] = useAddContactMutation();
-  const { data: contacts } = useFetchContactsQuery();
+  const { data } = useFetchContactsQuery();
 
   const handleInputChange = e => {
     const { name, value } = e.currentTarget;
@@ -27,7 +27,7 @@ export function ContactForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const isContact = contacts.find(
+    const isContact = data.find(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
 

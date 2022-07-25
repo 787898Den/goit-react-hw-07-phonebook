@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import  {changeFilter} from 'redux/filter/actions';
+import { getFilter } from 'redux/filter/selectors';
 import s from './Filter.module.css';
 
 export const Filter = ({ title }) => {
-  const value = useSelector(state => state.filter);
-
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   return (
@@ -14,7 +14,7 @@ export const Filter = ({ title }) => {
         className={s.input}
         type="text"
         name="filter"
-        value={value}
+        value={filter}
         onChange={e => dispatch(changeFilter(e.currentTarget.value))}
       />
     </label>

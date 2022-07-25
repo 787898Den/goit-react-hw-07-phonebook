@@ -1,11 +1,12 @@
 import { useSelector} from 'react-redux';
-
+import { useFetchContactsQuery } from 'redux/api';
 import { ContactItem } from './ContactItem';
 import s from './ContactList.module.css';
 import { Bars} from 'react-loader-spinner';
 
-export const ContactList = ({ contacts: { data: contacts, isFetching, isError } }) => {
-  const filterValue = useSelector(state => state.filter);
+export const ContactList = () => {
+  const { data: contacts, isFetching, isError } = useFetchContactsQuery();
+  const filter = useSelector(state => state.filter);
 
   return (
     <>
@@ -19,7 +20,7 @@ export const ContactList = ({ contacts: { data: contacts, isFetching, isError } 
         <ul className={s.list}>
         {contacts
             .filter(({ name }) =>
-              name.toLowerCase().includes(filterValue.toLowerCase()),
+              name.toLowerCase().includes(filter.toLowerCase()),
             )
             .sort((a, b) => a.name.localeCompare(b.name))
             .map(({ id, name, phone }) => {
